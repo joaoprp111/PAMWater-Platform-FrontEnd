@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Droid Sans Mono' rel='stylesheet'>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+</head>
+
+<body>
+  <div class="page-wrapper chiller-theme toggled">
+    <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+      <i class="fas fa-bars"></i>
+    </a>
+    <nav id="sidebar" class="sidebar-wrapper">
+      <div class="sidebar-content">
+        <div class="sidebar-brand">
+          <img src="./img/logo_pamwater.png" class="tablinks" style="width: 80%; height: 30%; margin-right: 20%; border-radius: 10%;"
+            onclick="openTab(event, 'main_page')" id="defaultOpen">
+          <!--<a class="tablinks" onclick="openTab(event, 'main_page')" id="defaultOpen">PAMWater</a>-->
+          <div id="close-sidebar">
+            <i class="fas fa-times"></i>
+          </div>
+        </div>
+        <!-- sidebar-search  -->
+        <div class="sidebar-menu">
+          <ul>
+            <li class="header-menu">
+              <span>Dashboards</span>
+            </li>
+            <li class="sidebar-dropdown">
+              <a href="#">
+                <i class="fa fa-bolt"></i>
+                <span>Electricidade</span>
+              </a>
+              <div class="sidebar-submenu">
+                <ul>
+                  <li>
+                    <a class="tablinks" onclick="openTab(event, 'elec_vila_real')"><i class="fas fa-mountain"></i>Vila
+                      Real</a>
+                  </li>
+                  <li>
+                    <a class="tablinks" onclick="openTab(event, 'elec_guimaraes')"><i
+                        class="fab fa-fort-awesome"></i>Guimarães</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="sidebar-dropdown">
+              <a href="#">
+                <i class="fa fa-flask"></i>
+                <span>Controlo Analítico</span>
+              </a>
+              <div class="sidebar-submenu">
+                <ul>
+                  <li>
+                    <a class="tablinks" onclick="openTab(event, 'con_ana_vila_real')"><i
+                        class="fas fa-mountain"></i>Vila Real </a>
+                </ul>
+              </div>
+            </li>
+            <li class="sidebar-dropdown">
+              <a href="#">
+                <i class="fas fa-clock"></i>
+                <span>Funcionamento</span>
+              </a>
+              <div class="sidebar-submenu">
+                <ul>
+                  <li>
+                    <a class="tablinks" onclick="openTab(event, 'func_vila_real')"><i class="fas fa-mountain"></i>Vila
+                      Real</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="sidebar-dropdown">
+              <a href="#">
+                <i class="fas fa-water"></i>
+                <span>Caudais</span>
+              </a>
+              <div class="sidebar-submenu">
+                <ul>
+                  <li>
+                    <a class="tablinks" onclick="openTab(event, 'caudais_guimaraes')"><i
+                        class="fab fa-fort-awesome"></i>Guimarães</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="header-menu">
+              <span>Previsões</span>
+            </li>
+            <li class="sidebar-dropdown">
+              <a href="#">
+                <i class="fas fa-mountain"></i>
+                <span>Vila Real</span>
+              </a>
+              <div class="sidebar-submenu">
+                <ul>
+                  <li>
+                    <a id="tab_pred_at" class="tablinks" onclick="openTab(event, 'prev_at')"><i class="fas fa-chart-line"></i>Azoto
+                      Total em Efluente</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="sidebar-dropdown">
+              <a href="#">
+                <i class="fab fa-fort-awesome"></i>
+                <span>Guimarães</span>
+              </a>
+              <div class="sidebar-submenu">
+                <ul>
+                  <li>
+                    <a id="tab_prev_ph_gui" class="tablinks" onclick="openTab(event, 'prev_ph_gui')"><i class="fas fa-chart-line"></i>pH em Afluente</a>
+                  </li>
+                  <li>
+                    <a id="tab_prev_elec_tot_gui" class="tablinks" onclick="openTab(event, 'prev_elec_tot_gui')"><i class="fas fa-chart-line"></i>Electricidade Total</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <!--
+            <li class="header-menu">
+              <span>Dados</span>
+            </li>
+            <li class="sidebar-dropdown1" onclick="openTab(event, 'insert_data')">
+              <a href="#">
+                <i class="fas fa-database"></i>
+                <span>Inserção de Dados</span>
+              </a>
+            </li>
+            -->
+
+            <!-- sidebar-menu  -->
+        </div>
+
+    </nav>
+    <!-- sidebar-wrapper  -->
+    <main class="page-content" style="width: 100%; height: 100%; background-color: #202124;">
+      <div class="container" style="width: 100%; height: 100%; background-color: #202124;">
+        <div id="main_page" class="tabcontent"
+          style="width: 100%; height: 100%; background-color: #202124; position: relative;">
+          <div class="main_div">
+            <h1 class="text_main">Bem-Vindo ao PAMWater!</h1>
+            <div class="div_img_main">
+              <img src="./img/etar.jpg" class="img_main">
+            </div>
+          </div>
+        </div>
+        <div id="elec_vila_real" class="tabcontent" style="width: 100%; height: 100%; background-color: #202124;">
+          <iframe width="100%" height="100%" id="elec_vila_real_iframe" src="" frameborder="0" style="border:0"
+            allowfullscreen></iframe>
+          <div
+            style="width:100%;margin-top:-32px;z-index:99;position:absolute; background-color:#202124;padding-bottom:33px;">
+          </div>
+        </div>
+        <div id="elec_guimaraes" class="tabcontent" style="width: 100%; height: 100%;">
+          <iframe width="100%" height="100%" id="elec_guimaraes_iframe" src="" frameborder="0" style="border:0"
+            allowfullscreen></iframe>
+          <div
+            style="width:100%;margin-top:-32px;z-index:99;position:absolute; background-color:#202124;padding-bottom:33px;">
+          </div>
+        </div>
+        <div id="con_ana_vila_real" class="tabcontent" style="width: 100%; height: 100%;">
+          <iframe width="100%" height="100%" id="con_ana_vila_real_iframe" src="" frameborder="0" style="border:0"
+            allowfullscreen></iframe>
+          <div
+            style="width:100%;margin-top:-32px;z-index:99;position:absolute; background-color:#202124;padding-bottom:33px;">
+          </div>
+        </div>
+        <div id="func_vila_real" class="tabcontent" style="width: 100%; height: 100%;">
+          <iframe width="100%" height="100%" id="func_vila_real_iframe" src="" frameborder="0" style="border:0"
+            allowfullscreen></iframe>
+          <div
+            style="width:100%;margin-top:-32px;z-index:99;position:absolute; background-color:#202124;padding-bottom:33px;">
+          </div>
+        </div>
+        <div id="caudais_guimaraes" class="tabcontent" style="width: 100%; height: 100%;">
+          <iframe width="100%" height="100%" id="caudais_guimaraes_iframe" src="" frameborder="0" style="border:0"
+            allowfullscreen></iframe>
+          <div
+            style="width:100%;margin-top:-32px;z-index:99;position:absolute; background-color:#202124;padding-bottom:33px;">
+          </div>
+        </div>
+        <div id="prev_at" class="tabcontent" style="width: 100%; height: 100%;">
+
+          <div class="prev_at_main">
+            <!-- <button onclick="get_data()"> GET DATA</button> -->
+            <div id="div_roler_prev_graph" class="lds-roller"
+              style="position: absolute; z-index: 99; top:0;bottom: 0;left: 0;right: 0; margin: auto; display: none;">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+            <div class="prev_at_components">
+
+              <!-- <h2 id="text_prediction" class="text_prediction" style="color: white; margin-top: 3%;">Para Azoto Total em
+                Afluente
+                Bruto de <var id="at_ab"></var>, CQO em Efluente Tratado de <var id="cqo_et"></var>, SST em Afluente
+                Bruto
+                de <var id="sst_ab"></var>, Amonia em Efluente Tratado de <var id="amonia_et"></var> e Ortofosfatos em
+                Efluente
+                Tratado de <var id="ort_et"></var>, a previsão do azoto total é: <var id="azoto_total"></var></h2> -->
+              <h3 style="color: white; margin-top: 1%;"> Previsão das próximas 3 semanas do valor do Azoto total no
+                Efluente Tratado </h3>
+                <!-- (último registo a <var id="last_val"></var>)</h3> -->
+                
+              <div class="div_res_pred">
+                <!-- <img id="img_graph_prev" class="img_graph_prev" src="" alt=""
+                  style="height: 40%; background-color: white; float: left; width: 50%; padding: 5px;"> -->
+                <canvas id="myChart"
+                  style="float: left; width: 50%; padding: 5px; max-width: 70%; background-color: #2C2F37;"></canvas>
+                <table id="table_pred" class="table_pred">
+                  <tr>
+                    <th>Data</th>
+                    <th>Valor Previsto</th>
+                  </tr>
+                  <tr>
+                  </tr>
+                </table>
+              </div>
+              
+              <!-- <h3 style="color: white; margin-top: 5%; width: 100%;"> Previsão do Azoto Total no Efluente Tratado (baseado nos valores dos outros
+                indicadores)</h3>
+              <div class="login-box">
+                <form id="form_pred" class="form_prev_at" method="POST">
+                  <div class="user-box">
+                    <input type="text" name="azoto_total_em_Afluente_Bruto"
+                      oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                      required />
+                    <label>Azoto Total em Afluente Bruto</label>
+                  </div>
+                  <div class="user-box">
+                    <input type="text" name="cqo_em_Efluente_Tratado"
+                      oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                      required />
+                    <label>CQO em Efluente Tratado</label>
+                  </div>
+                  <div class="user-box">
+                    <input type="text" name="sst_em_Afluente_Bruto"
+                      oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                      required />
+                    <label>SST em Afluente Bruto</label>
+                  </div>
+                  <div class="user-box">
+                    <input type="text" name="amonia_em_Efluente_Tratado"
+                      oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                      required />
+                    <label>Amonia em Efluente Tratado</label>
+                  </div>
+                  <div class="user-box">
+                    <input type="text" name="ortofosfatos_em_Efluente_Tratado"
+                      oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                      required />
+                    <label>Ortofosfatos em Efluente Tratado</label>
+                  </div>
+                  <input id="submit_form_prediction" type="submit" value="Verificar Valor" class="submit_form"
+                    onclick="get_prediction()" />
+                </form>
+              </div>
+              <table id="table_pred_basead_indicatores" class="table_pred_basead_indicatores" style="color: white;">
+                <tr>
+                  <th>Azoto Total em Afluente Bruto</th>
+                  <th>CQO em Efluente Tratado</th>
+                  <th>SST em Afluente Bruto</th>
+                  <th>Amonia em Efluente Tratado</th>
+                  <th>Ortofosfatos em Efluente Tratado</th>
+                  <th>Previsão Azoto Total em Efluente Tratado</th>
+                </tr>
+                <tr>
+                </tr>
+              </table>
+              <div>
+                <button onclick="get_rules()" style="margin-top: 5%;"> Ver Todas as Regras</button>
+                <p id="display_rules" style="color: white;"></p>
+              </div> -->
+            </div>
+          </div>
+        </div>  
+        
+        <div id="prev_ph_gui" class="tabcontent" style="width: 100%; height: 100%;">
+
+          <div class="prev_ph_gui_main">
+            <!-- <button onclick="get_data()"> GET DATA</button> -->
+            <div id="div_roler_prev_graph1" class="lds-roller"
+              style="position: absolute; z-index: 99; top:0;bottom: 0;left: 0;right: 0; margin: auto; display: none;">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+            <div class="prev_ph_gui_components">
+
+              <!-- <h2 id="text_prediction" class="text_prediction" style="color: white; margin-top: 3%;">Para Azoto Total em
+                Afluente
+                Bruto de <var id="at_ab"></var>, CQO em Efluente Tratado de <var id="cqo_et"></var>, SST em Afluente
+                Bruto
+                de <var id="sst_ab"></var>, Amonia em Efluente Tratado de <var id="amonia_et"></var> e Ortofosfatos em
+                Efluente
+                Tratado de <var id="ort_et"></var>, a previsão do azoto total é: <var id="azoto_total"></var></h2> -->
+              <h3 style="color: white; margin-top: 1%;"> Previsão do pH em Afluente Bruto para ... </h3>
+                <!--(último registo a <var id="last_val"></var>)</h3> -->
+                
+              <div class="div_res_pred">
+                <!-- <img id="img_graph_prev" class="img_graph_prev" src="" alt=""
+                  style="height: 40%; background-color: white; float: left; width: 50%; padding: 5px;"> -->
+                <canvas id="myChart_ph_gui"
+                  style="float: left; width: 50%; padding: 5px; max-width: 70%; background-color: #2C2F37;"></canvas>
+                <table id="table_pred_ph_gui" class="table_pred">
+                  <tr>
+                    <th>Data</th>
+                    <th>Valor Previsto</th>
+                  </tr>
+                  <tr>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>   
+
+
+
+        <div id="prev_elec_tot_gui" class="tabcontent" style="width: 100%; height: 100%;">
+
+          <div class="prev_elec_tot_gui_main">
+            <!-- <button onclick="get_data()"> GET DATA</button> -->
+            <div id="div_roler_prev_graph2" class="lds-roller"
+              style="position: absolute; z-index: 99; top:0;bottom: 0;left: 0;right: 0; margin: auto; display: none;">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+            <div class="prev_elec_tot_gui_components">
+
+              <!-- <h2 id="text_prediction" class="text_prediction" style="color: white; margin-top: 3%;">Para Azoto Total em
+                Afluente
+                Bruto de <var id="at_ab"></var>, CQO em Efluente Tratado de <var id="cqo_et"></var>, SST em Afluente
+                Bruto
+                de <var id="sst_ab"></var>, Amonia em Efluente Tratado de <var id="amonia_et"></var> e Ortofosfatos em
+                Efluente
+                Tratado de <var id="ort_et"></var>, a previsão do azoto total é: <var id="azoto_total"></var></h2> -->
+              <h3 style="color: white; margin-top: 1%;"> Previsão dos próximos 3 dias da Electricidade Total</h3>
+                <!--(último registo a <var id="last_val"></var>)</h3> -->
+                
+              <div class="div_res_pred">
+                <!-- <img id="img_graph_prev" class="img_graph_prev" src="" alt=""
+                  style="height: 40%; background-color: white; float: left; width: 50%; padding: 5px;"> -->
+                <canvas id="myChart_elec_tot_gui"
+                  style="float: left; width: 50%; padding: 5px; max-width: 70%; background-color: #2C2F37;"></canvas>
+                <table id="table_pred_elec_tot_gui" class="table_pred">
+                  <tr>
+                    <th>Data</th>
+                    <th>Valor Previsto</th>
+                  </tr>
+                  <tr>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>  
+
+        
+        <div id="xxx" class="tabcontent" style="width: 100%; height: 100%;">
+          ssa
+        </div>
+        <div id="insert_data" class="tabcontent">
+          <h3 style="color: white;">Insira um ficheiro .csv que respeite a seguinte orientação:</h3>
+          <table id="table_ex_file" class="table_ex_file" style="color: white;">
+            <tr>
+              <th>Indicador</th>
+              <th>Tipo Indicador</th>
+              <th>Sub Tipo</th>
+              <th>Input</th>
+              <th>Date</th>
+              <th>Nome Cidade</th>
+              <th>Valor</th>
+            </tr>
+            <tr>
+              <td>...</td>
+              <td>...</td>
+              <td>...</td>
+              <td>...</td>
+              <td>...</td>
+              <td>...</td>
+              <td>...</td>
+            </tr>
+          </table>
+          <input type="file" id="fileUpload" style="color: white; margin-top: 3%;" />
+          <input type="button" accept=".csv" id="upload" value="Inserir" onclick="upload_file()" />
+          <hr />
+          <div id="dvCSV" style="color: white; width: 100px;height: 100%;">
+          </div>
+        </div>
+    </main>
+    <!-- page-content" -->
+  </div>
+  <!-- page-wrapper -->
+
+</body>
+
+<script>
+
+  $(".sidebar-dropdown > a").click(function () {
+    $(".sidebar-submenu").slideUp(200);
+    if (
+      $(this)
+        .parent()
+        .hasClass("active")
+    ) {
+      $(".sidebar-dropdown").removeClass("active");
+      $(this)
+        .parent()
+        .removeClass("active");
+    } else {
+      $(".sidebar-dropdown").removeClass("active");
+      $(this)
+        .next(".sidebar-submenu")
+        .slideDown(200);
+      $(this)
+        .parent()
+        .addClass("active");
+    }
+  });
+
+  $("#defaultOpen").click(function () {
+    $(".sidebar-dropdown").removeClass("active");
+    $(".sidebar-dropdown1").removeClass("active");
+    $(".chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu .tablinks i").removeClass("active");
+    $(".chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu .tablinks").removeClass("active");
+    $(".sidebar-submenu").slideUp(200);
+  });
+
+  $(".chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu .tablinks").click(function () {
+    if ($(this).hasClass("active")) {
+      $(".chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu .tablinks i").removeClass("active");
+      $(".chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu .tablinks ").removeClass("active");
+      $(".sidebar-dropdown1").removeClass("active");
+    }
+    else {
+      $(".chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu .tablinks i").removeClass("active");
+      $(".chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu .tablinks").removeClass("active");
+      $(".sidebar-dropdown1").removeClass("active");
+      $(this).addClass("active");
+    }
+  });
+
+  $(".chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown1").click(function () {
+    if ($(this).hasClass("active")) {
+      $(".chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown1").removeClass("active");
+      $(".chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown").removeClass("active");
+      $(".chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu .tablinks i").removeClass("active");
+      $(".chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu .tablinks").removeClass("active");
+      $(".sidebar-submenu").slideUp(200);
+    }
+    else {
+      $(".chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown1").removeClass("active");
+      $(".chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown").removeClass("active");
+      $(".chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu .tablinks i").removeClass("active");
+      $(".chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu .tablinks").removeClass("active");
+      $(".sidebar-submenu").slideUp(200);
+      $(this).addClass("active");
+    }
+  });
+
+  $("#close-sidebar").click(function () {
+    $(".page-wrapper").removeClass("toggled");
+  });
+  $("#show-sidebar").click(function () {
+    $(".page-wrapper").addClass("toggled");
+  });
+
+  function openTab(evt, tabName) {
+    if (tabName == 'elec_vila_real') {
+      if (document.getElementById('elec_vila_real_iframe').src == 'https://datastudio.google.com/embed/reporting/f0427e3b-c433-427b-85cb-68b780171285/page/VgD') {
+      } else {
+        document.getElementById('elec_vila_real_iframe').src = 'https://datastudio.google.com/embed/reporting/f0427e3b-c433-427b-85cb-68b780171285/page/VgD'
+      }
+    }
+
+    if (tabName == 'elec_guimaraes') {
+      if (document.getElementById('elec_guimaraes_iframe').src == 'https://datastudio.google.com/embed/reporting/a9c5843b-08f5-4603-8cf4-3f13e8613a14/page/VgD') {
+      } else {
+        document.getElementById('elec_guimaraes_iframe').src = 'https://datastudio.google.com/embed/reporting/a9c5843b-08f5-4603-8cf4-3f13e8613a14/page/VgD'
+      }
+    }
+
+    if (tabName == 'con_ana_vila_real') {
+      if (document.getElementById('con_ana_vila_real_iframe').src == 'https://datastudio.google.com/embed/reporting/3fc89dfa-822d-430d-ba70-e56b990f59aa/page/VgD') {
+      } else {
+        document.getElementById('con_ana_vila_real_iframe').src = 'https://datastudio.google.com/embed/reporting/3fc89dfa-822d-430d-ba70-e56b990f59aa/page/VgD'
+      }
+    }
+
+    if (tabName == 'func_vila_real') {
+      if (document.getElementById('func_vila_real_iframe').src == 'https://datastudio.google.com/embed/reporting/0955af22-af3b-43f6-83ba-a5106bcb48fc/page/VgD') {
+      } else {
+        document.getElementById('func_vila_real_iframe').src = 'https://datastudio.google.com/embed/reporting/0955af22-af3b-43f6-83ba-a5106bcb48fc/page/VgD'
+      }
+    }
+
+    if (tabName == 'caudais_guimaraes') {
+      if (document.getElementById('caudais_guimaraes_iframe').src == 'https://datastudio.google.com/embed/reporting/c6c03013-4dec-4b08-a2db-1579f2fabc97/page/VgD') {
+      } else {
+        document.getElementById('caudais_guimaraes_iframe').src = 'https://datastudio.google.com/embed/reporting/c6c03013-4dec-4b08-a2db-1579f2fabc97/page/VgD'
+      }
+    }
+
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    document.getElementById(tabName).style.display = "block";
+  }
+
+  // Get the element with id="defaultOpen" and click on it
+  document.getElementById("defaultOpen").click();
+  document.getElementById('table_pred').style.display = "none";
+
+  function get_data() {
+    const url = 'https://etartese.herokuapp.com/dados'
+    fetch(url)
+      .then(response => response.json())
+      .then(json => {
+        console.log(json);
+      })
+  }
+  $('#tab_pred_at').click(function () {
+    graph_prediction_at_vr()
+  })
+
+  $('#tab_prev_ph_gui').click(function () {
+    graph_prediction_ph_gui()
+  })
+
+  $('#tab_prev_elec_tot_gui').click(function () {
+    graph_prediction_elec_tot_gui()
+  })
+
+
+  function get_prediction() {
+    $('#form_pred').submit(function (e) {
+      document.getElementById('submit_form_prediction').style.display = 'none';
+      document.getElementById('div_roler_prev_graph').style.display = 'block';
+      $(".prev_at_components").css("-webkit-filter", "blur(4px)");
+      $(".prev_at_components").css("-moz-filter", "blur(4px)");
+      $(".prev_at_components").css("-ms-filter", "blur(4px)");
+      $(".prev_at_components").css("-o-filter", "blur(4px)");
+      $(".prev_at_components").css("filter", "blur(4px)");
+      e.preventDefault();
+      $.ajax({
+        url: 'http://127.0.0.1:5000/prediction',
+        method: 'post',
+        data: $("#form_pred").serializeArray()
+      })
+        .done(function (response) {
+          document.getElementById('div_roler_prev_graph').style.display = 'none'
+          $(".prev_at_components").css("-webkit-filter", "");
+          $(".prev_at_components").css("-moz-filter", "");
+          $(".prev_at_components").css("-ms-filter", "");
+          $(".prev_at_components").css("-o-filter", "");
+          $(".prev_at_components").css("filter", "");
+          /* $("#at_ab").text(response.azoto_total_em_Afluente_Bruto + ' mg/l');
+          $("#cqo_et").text(response.cqo_em_Efluente_Tratado + ' mg/l');
+          $("#sst_ab").text(response.sst_em_Afluente_Bruto + ' mg/l');
+          $("#amonia_et").text(response.amonia_em_Efluente_Tratado + ' mg/l');
+          $("#ort_et").text(response.ortofosfatos_em_Efluente_Tratado + ' mg/l');
+          $("#azoto_total").text(parseFloat(response.previsao).toFixed(3) + ' mg/l') */
+          var table = document.getElementById("table_pred_basead_indicatores");
+          var tr = "";
+          table.innerHTML = table.rows[0].innerHTML;
+          tr += '<tr>';
+          tr += '<td>' + response.azoto_total_em_Afluente_Bruto + ' mg/l' + '</td>' + '<td>' + response.cqo_em_Efluente_Tratado + ' mg/l' + '</td>' + '<td>' + response.sst_em_Afluente_Bruto + ' mg/l' + '</td>' + '<td>' + response.amonia_em_Efluente_Tratado + ' mg/l' + '</td>' + '<td>' + response.ortofosfatos_em_Efluente_Tratado + ' mg/l' + '</td>' + '<td>' + parseFloat(response.previsao).toFixed(3) + ' mg/l' + '</td>'
+          tr += '</tr>'
+          table.innerHTML += tr;
+          document.getElementById("form_pred").reset();
+          document.getElementById('table_pred_basead_indicatores').style.display = "table";
+          document.getElementById('submit_form_prediction').style.display = 'block';
+        })
+        .fail(function (error) {
+          console.log("ERRO")
+        });
+    })
+  }
+  function get_rules() {
+    document.getElementById('div_roler_prev_graph').style.display = 'block'
+    $(".prev_at_components").css("-webkit-filter", "blur(4px)");
+    $(".prev_at_components").css("-moz-filter", "blur(4px)");
+    $(".prev_at_components").css("-ms-filter", "blur(4px)");
+    $(".prev_at_components").css("-o-filter", "blur(4px)");
+    $(".prev_at_components").css("filter", "blur(4px)");
+    const url = 'https://pamwater-platform-backend.onrender.com/rules'
+    fetch(url)
+      .then(response => response.json())
+      .then(json => {
+        document.getElementById('div_roler_prev_graph').style.display = 'none'
+        $(".prev_at_components").css("-webkit-filter", "");
+        $(".prev_at_components").css("-moz-filter", "");
+        $(".prev_at_components").css("-ms-filter", "");
+        $(".prev_at_components").css("-o-filter", "");
+        $(".prev_at_components").css("filter", "");
+        var text = "";
+        for (i = 0; i < json.length; i++) {
+          text += json[i] + "<br>";
+        }
+        document.getElementById("display_rules").innerHTML = text;
+      })
+  }
+  document.getElementById('myChart').style.display = "none";
+  document.getElementById('myChart_ph_gui').style.display = "none";
+
+  document.getElementById("fileUpload").value = '';
+  function upload_file() {
+    var fileUpload = document.getElementById("fileUpload");
+    var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.csv|.txt)$/;
+    const formData = new FormData();
+    if (regex.test(fileUpload.value.toLowerCase())) {
+      if (typeof (FileReader) != "undefined") {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          var table = document.createElement("table");
+          var rows = e.target.result.split("\n");
+          $.post('https://pamwater-platform-backend.onrender.com/insert_data', { rows }, function () {
+            document.getElementById("fileUpload").value = '';
+          }).done(function (response) {
+            alert("Ficheiro inserido com sucesso!");
+          }).fail(function (error) {
+            alert("Ocorreu um erro, ficheiro não inserido!");
+          });
+          for (var i = 0; i < rows.length; i++) {
+            var cells = rows[i].split(",");
+            if (cells.length > 1) {
+              var row = table.insertRow(-1);
+              for (var j = 0; j < cells.length; j++) {
+                var cell = row.insertCell(-1);
+                cell.innerHTML = cells[j];
+              }
+            }
+          }
+          var dvCSV = document.getElementById("dvCSV");
+          dvCSV.innerHTML = "";
+          dvCSV.appendChild(table);
+          $("#dvCSV tbody tr:first").addClass('title_csv');
+          $("#dvCSV tbody").addClass('table_csv');
+        }
+        reader.readAsText(fileUpload.files[0]);
+      } else {
+        alert("This browser does not support HTML5.");
+      }
+    } else {
+      alert("Please upload a valid CSV file.");
+    }
+  }
+
+  const url = 'https://pamwater-platform-backend.onrender.com/last_date'
+  fetch(url)
+    .then(response => response.json())
+    .then(json => {
+      $("#last_val").text(json);
+    })
+
+    function graph_prediction_at_vr() {
+    document.getElementById('table_pred').style.display = 'none';
+    document.getElementById('myChart').style.display = "none";
+      document.getElementById('div_roler_prev_graph').style.display = 'block';
+      $(".prev_at_components").css("-webkit-filter", "blur(4px)");
+      $(".prev_at_components").css("-moz-filter", "blur(4px)");
+      $(".prev_at_components").css("-ms-filter", "blur(4px)");
+      $(".prev_at_components").css("-o-filter", "blur(4px)");
+      $(".prev_at_components").css("filter", "blur(4px)");
+      const url = 'https://pamwater-platform-backend.onrender.com/prediction_next_days'
+    fetch(url)
+      .then(response => response.json())
+      .then(json => {
+          dates_ori = []
+          pred_values = []
+          ori_values = []
+          pred_dates = []
+          json.forEach(x => {
+            dates_ori.push(x.date_ori)
+            pred_values.push(x.pred_values)
+            ori_values.push(x.values_ori)
+            pred_dates.push(x.pred_dates)
+          })
+          dates_ori = dates_ori.filter(function (el) { return el; })
+          pred_dates = pred_dates.filter(function (el) { return el; })
+          ori_values = ori_values.filter(function (el) { return el; })
+          pred_values.unshift(ori_values.slice(-1)[0])
+          //pred_values.shift()
+          pred_values.push(undefined)
+          //var weeks_pred = 0
+          //$("#form_pred_weeks").serializeArray().forEach(x => weeks_pred = x.value)
+          //var xxx = pred_values.splice(0, weeks_pred)
+          var xxx = pred_values.splice(0, 4)
+          pred_values.concat(xxx)
+          xxx.forEach(x => { pred_values.push(x.toFixed(3)) })
+
+          function onlyUnique(value, index, self) {
+            return self.indexOf(value) === index;
+          }
+          document.getElementById('div_roler_prev_graph').style.display = 'none'
+          $(".prev_at_components").css("-webkit-filter", "");
+          $(".prev_at_components").css("-moz-filter", "");
+          $(".prev_at_components").css("-ms-filter", "");
+          $(".prev_at_components").css("-o-filter", "");
+          $(".prev_at_components").css("filter", "");
+          var max = Math.max.apply(Math, ori_values)
+          var max_pred_values = Math.max.apply(null, pred_values.filter(function (x) { return isFinite(x); }));
+          if (max_pred_values > max) { max = max_pred_values }
+          var ctx = document.getElementById('myChart').getContext('2d');
+          var gradient = ctx.createLinearGradient(0, 0, 0, 800);
+          gradient.addColorStop(0, 'rgba(0, 163, 253, 1)');
+          gradient.addColorStop(0.5, 'rgba(0, 163, 253, 0.28)');
+          gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+          var gradient1 = ctx.createLinearGradient(0, 0, 0, 800);
+          gradient1.addColorStop(0, 'rgba(255, 186, 0, 0.95)');
+          gradient1.addColorStop(0.5, 'rgba(255, 186, 0, 0.35)');
+          gradient1.addColorStop(1, 'rgba(0, 0, 0, 0)');
+          pred_values.splice(1,1)
+          pred_values.splice(1,1)
+          graph = new Chart("myChart", {
+            type: "line",
+            data: {
+              labels: dates_ori.concat(pred_dates).filter(onlyUnique),
+              datasets: [
+                {
+                  label: 'Valores Originais',
+                  data: ori_values,
+                  borderColor: 'blue',
+                  backgroundColor: gradient,
+                },
+                {
+                  label: 'Valores Previstos',
+                  data: pred_values,
+                  borderColor: 'orange',
+                  backgroundColor: gradient1,
+                }
+              ]
+            },
+            options: {
+              elements: {
+                    point:{
+                        radius: 0,
+                        pointHitRadius: 0
+                    }
+                },
+              legend: {
+                labels: {
+                  fontColor: "white",
+                  fontSize: 15
+                }
+              },
+              scales: {
+                yAxes: [{
+                  ticks: {
+                    min: 0,
+                    max: Math.ceil(max) + 3,
+                    fontColor: "white",
+                    fontSize: 12,
+                    beginAtZero: true
+                  },
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Valor (mg/l)',
+                    fontColor: 'white',
+                    fontSize: 15
+                  }
+                }],
+                xAxes: [{
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Data',
+                    fontColor: 'white',
+                    fontSize: 15
+                  },
+                  ticks: {
+                    fontColor: "white",
+                    fontSize: 12,
+                    beginAtZero: true
+                  }
+                }]
+              }
+            }
+          });
+          
+          graph.data.datasets[0].pointRadius = [5, 5, 5, 5, 5, 5, 5, 5, 5];
+          graph.data.datasets[1].pointRadius = [0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5];
+          graph.update();
+          const url = 'https://pamwater-platform-backend.onrender.com/prediction_next_days_values'
+          fetch(url)
+            .then(response => response.json())
+            .then(json => {
+              var table = document.getElementById("table_pred");
+              var tr = "";
+              table.innerHTML = table.rows[0].innerHTML;
+              json.forEach(x => {
+                tr += '<tr>';
+                tr += '<td>' + x.pred_date + '</td>' + '<td>' + x.pred_val.toFixed(3) + ' mg/l' + '</td>'
+                tr += '</tr>'
+              })
+              table.innerHTML += tr;
+            })
+          document.getElementById('table_pred').style.display = 'block';
+          document.getElementById('myChart').style.display = "block";
+          document.getElementById('myChart').scrollIntoView();
+        })
+        
+  }
+
+
+
+  function graph_prediction_ph_gui() {
+    document.getElementById('table_pred_ph_gui').style.display = 'none';
+    document.getElementById('myChart_ph_gui').style.display = "none";
+      document.getElementById('div_roler_prev_graph1').style.display = 'block';
+      $(".prev_ph_gui_components").css("-webkit-filter", "blur(4px)");
+      $(".prev_ph_gui_components").css("-moz-filter", "blur(4px)");
+      $(".prev_ph_gui_components").css("-ms-filter", "blur(4px)");
+      $(".prev_ph_gui_components").css("-o-filter", "blur(4px)");
+      $(".prev_ph_gui_components").css("filter", "blur(4px)");
+      const url = 'https://pamwater-platform-backend.onrender.com/prediction_next_days_ph_gui'
+    fetch(url)
+      .then(response => response.json())
+      .then(json => {
+          dates_ori = []
+          pred_values = []
+          ori_values = []
+          pred_dates = []
+          json.forEach(x => {
+            dates_ori.push(x.date_ori)
+            pred_values.push(x.pred_values)
+            ori_values.push(x.values_ori)
+            pred_dates.push(x.pred_dates)
+          })
+          dates_ori = dates_ori.filter(function (el) { return el; })
+          pred_dates = pred_dates.filter(function (el) { return el; })
+          ori_values = ori_values.filter(function (el) { return el; })
+          pred_values.unshift(ori_values.slice(-1)[0])
+          //pred_values.shift()
+          pred_values.push(undefined)
+          //var weeks_pred = 0
+          //$("#form_pred_weeks").serializeArray().forEach(x => weeks_pred = x.value)
+          //var xxx = pred_values.splice(0, weeks_pred)
+          var xxx = pred_values.splice(0, 3)
+          pred_values.concat(xxx)
+          xxx.forEach(x => { pred_values.push(x.toFixed(3)) })
+
+          function onlyUnique(value, index, self) {
+            return self.indexOf(value) === index;
+          }
+          document.getElementById('div_roler_prev_graph1').style.display = 'none';
+          $(".prev_ph_gui_components").css("-webkit-filter", "");
+          $(".prev_ph_gui_components").css("-moz-filter", "");
+          $(".prev_ph_gui_components").css("-ms-filter", "");
+          $(".prev_ph_gui_components").css("-o-filter", "");
+          $(".prev_ph_gui_components").css("filter", "");
+          var max = Math.max.apply(Math, ori_values)
+          var max_pred_values = Math.max.apply(null, pred_values.filter(function (x) { return isFinite(x); }));
+          if (max_pred_values > max) { max = max_pred_values }
+          var ctx = document.getElementById('myChart_ph_gui').getContext('2d');
+          var gradient = ctx.createLinearGradient(0, 0, 0, 800);
+          gradient.addColorStop(0, 'rgba(0, 163, 253, 1)');
+          gradient.addColorStop(0.5, 'rgba(0, 163, 253, 0.28)');
+          gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+          var gradient1 = ctx.createLinearGradient(0, 0, 0, 800);
+          gradient1.addColorStop(0, 'rgba(255, 186, 0, 0.95)');
+          gradient1.addColorStop(0.5, 'rgba(255, 186, 0, 0.35)');
+          gradient1.addColorStop(1, 'rgba(0, 0, 0, 0)');
+          pred_values.splice(1,1)
+          pred_values.splice(1,1)
+          graph = new Chart("myChart_ph_gui", {
+            type: "line",
+            data: {
+              labels: dates_ori.concat(pred_dates).filter(onlyUnique),
+              datasets: [
+                {
+                  label: 'Valores Originais',
+                  data: ori_values,
+                  borderColor: 'blue',
+                  backgroundColor: gradient,
+                },
+                {
+                  label: 'Valores Previstos',
+                  data: pred_values,
+                  borderColor: 'orange',
+                  backgroundColor: gradient1,
+                }
+              ]
+            },
+            options: {
+              elements: {
+                    point:{
+                        radius: 0,
+                        pointHitRadius: 0
+                    }
+                },
+              legend: {
+                labels: {
+                  fontColor: "white",
+                  fontSize: 15
+                }
+              },
+              scales: {
+                yAxes: [{
+                  ticks: {
+                    min: 0,
+                    max: Math.ceil(max) + 3,
+                    fontColor: "white",
+                    fontSize: 12,
+                    beginAtZero: true
+                  },
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Valor (Escala Sorensen)',
+                    fontColor: 'white',
+                    fontSize: 15
+                  }
+                }],
+                xAxes: [{
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Data',
+                    fontColor: 'white',
+                    fontSize: 15
+                  },
+                  ticks: {
+                    fontColor: "white",
+                    fontSize: 12,
+                    beginAtZero: true
+                  }
+                }]
+              }
+            }
+          });
+          
+          graph.data.datasets[0].pointRadius = [5, 5, 5, 5, 5, 5, 5, 5, 5];
+          graph.data.datasets[1].pointRadius = [0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5];
+          graph.update();
+          const url = 'https://pamwater-platform-backend.onrender.com/prediction_next_days_values_ph_gui'
+          fetch(url)
+            .then(response => response.json())
+            .then(json => {
+              var table = document.getElementById("table_pred_ph_gui");
+              var tr = "";
+              table.innerHTML = table.rows[0].innerHTML;
+              json.forEach(x => {
+                tr += '<tr>';
+                tr += '<td>' + x.pred_date + '</td>' + '<td>' + x.pred_val.toFixed(3) + ' Escala Sorensen' + '</td>'
+                tr += '</tr>'
+              })
+              table.innerHTML += tr;
+            })
+          document.getElementById('table_pred_ph_gui').style.display = 'block';
+          document.getElementById('myChart_ph_gui').style.display = "block";
+          document.getElementById('myChart_ph_gui').scrollIntoView();
+        })
+        
+  }
+
+
+
+
+
+  function graph_prediction_elec_tot_gui() {
+    document.getElementById('table_pred_elec_tot_gui').style.display = 'none';
+    document.getElementById('myChart_elec_tot_gui').style.display = "none";
+      document.getElementById('div_roler_prev_graph2').style.display = 'block';
+      $(".prev_elec_tot_gui_components").css("-webkit-filter", "blur(4px)");
+      $(".prev_elec_tot_gui_components").css("-moz-filter", "blur(4px)");
+      $(".prev_elec_tot_gui_components").css("-ms-filter", "blur(4px)");
+      $(".prev_elec_tot_gui_components").css("-o-filter", "blur(4px)");
+      $(".prev_elec_tot_gui_components").css("filter", "blur(4px)");
+      const url = 'https://pamwater-platform-backend.onrender.com/prediction_next_days_elec_tot_gui'
+    fetch(url)
+      .then(response => response.json())
+      .then(json => {
+          dates_ori = []
+          pred_values = []
+          ori_values = []
+          pred_dates = []
+          json.forEach(x => {
+            dates_ori.push(x.date_ori)
+            pred_values.push(x.pred_values)
+            ori_values.push(x.values_ori)
+            pred_dates.push(x.pred_dates)
+          })
+          dates_ori = dates_ori.filter(function (el) { return el; })
+          pred_dates = pred_dates.filter(function (el) { return el; })
+          ori_values = ori_values.filter(function (el) { return el; })
+          pred_values.unshift(ori_values.slice(-1)[0])
+          //pred_values.shift()
+          pred_values.push(undefined)
+          //var weeks_pred = 0
+          //$("#form_pred_weeks").serializeArray().forEach(x => weeks_pred = x.value)
+          //var xxx = pred_values.splice(0, weeks_pred)
+          var xxx = pred_values.splice(0, 4)
+          pred_values.concat(xxx)
+          xxx.forEach(x => { pred_values.push(x.toFixed(3)) })
+
+          function onlyUnique(value, index, self) {
+            return self.indexOf(value) === index;
+          }
+          document.getElementById('div_roler_prev_graph2').style.display = 'none'
+          $(".prev_elec_tot_gui_components").css("-webkit-filter", "");
+          $(".prev_elec_tot_gui_components").css("-moz-filter", "");
+          $(".prev_elec_tot_gui_components").css("-ms-filter", "");
+          $(".prev_elec_tot_gui_components").css("-o-filter", "");
+          $(".prev_elec_tot_gui_components").css("filter", "");
+          var max = Math.max.apply(Math, ori_values)
+          var max_pred_values = Math.max.apply(null, pred_values.filter(function (x) { return isFinite(x); }));
+          if (max_pred_values > max) { max = max_pred_values }
+          var ctx = document.getElementById('myChart').getContext('2d');
+          var gradient = ctx.createLinearGradient(0, 0, 0, 800);
+          gradient.addColorStop(0, 'rgba(0, 163, 253, 1)');
+          gradient.addColorStop(0.5, 'rgba(0, 163, 253, 0.28)');
+          gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+          var gradient1 = ctx.createLinearGradient(0, 0, 0, 800);
+          gradient1.addColorStop(0, 'rgba(255, 186, 0, 0.95)');
+          gradient1.addColorStop(0.5, 'rgba(255, 186, 0, 0.35)');
+          gradient1.addColorStop(1, 'rgba(0, 0, 0, 0)');
+          pred_values.splice(1,1)
+          pred_values.splice(1,1)
+          graph = new Chart("myChart_elec_tot_gui", {
+            type: "line",
+            data: {
+              labels: dates_ori.concat(pred_dates).filter(onlyUnique),
+              datasets: [
+                {
+                  label: 'Valores Originais',
+                  data: ori_values,
+                  borderColor: 'blue',
+                  backgroundColor: gradient,
+                },
+                {
+                  label: 'Valores Previstos',
+                  data: pred_values,
+                  borderColor: 'orange',
+                  backgroundColor: gradient1,
+                }
+              ]
+            },
+            options: {
+              elements: {
+                    point:{
+                        radius: 0,
+                        pointHitRadius: 0
+                    }
+                },
+              legend: {
+                labels: {
+                  fontColor: "white",
+                  fontSize: 15
+                }
+              },
+              scales: {
+                yAxes: [{
+                  ticks: {
+                    min: 0,
+                    max: Math.ceil(max) + 3,
+                    fontColor: "white",
+                    fontSize: 12,
+                    beginAtZero: true
+                  },
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Valor (kWh)',
+                    fontColor: 'white',
+                    fontSize: 15
+                  }
+                }],
+                xAxes: [{
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Data',
+                    fontColor: 'white',
+                    fontSize: 15
+                  },
+                  ticks: {
+                    fontColor: "white",
+                    fontSize: 12,
+                    beginAtZero: true
+                  }
+                }]
+              }
+            }
+          });
+          
+          graph.data.datasets[0].pointRadius = [5, 5, 5, 5, 5, 5, 5, 5, 5];
+          graph.data.datasets[1].pointRadius = [0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5];
+          graph.update();
+          const url = 'https://pamwater-platform-backend.onrender.com/prediction_next_days_values_elec_tot_gui'
+           fetch(url)
+            .then(response => response.json())
+            .then(json => {
+              var table = document.getElementById("table_pred_elec_tot_gui");
+              var tr = "";
+              table.innerHTML = table.rows[0].innerHTML;
+              json.forEach(x => {
+                tr += '<tr>';
+                tr += '<td>' + x.pred_date + '</td>' + '<td>' + x.pred_val.toFixed(3) + ' kWh' + '</td>'
+                tr += '</tr>'
+              })
+              table.innerHTML += tr;
+            })
+          document.getElementById('table_pred_elec_tot_gui').style.display = 'block';
+          document.getElementById('myChart_elec_tot_gui').style.display = "block";
+          document.getElementById('myChart_elec_tot_gui').scrollIntoView();
+        })
+        
+  }
+
+
+
+
+
+
+  /*function graph_prediction() {
+    document.getElementById('table_pred').style.display = 'none';
+    document.getElementById('myChart').style.display = "none";
+    $('#form_pred_weeks').submit(function (e) {
+      document.getElementById('div_roler_prev_graph').style.display = 'block';
+      $(".prev_at_components").css("-webkit-filter", "blur(4px)");
+      $(".prev_at_components").css("-moz-filter", "blur(4px)");
+      $(".prev_at_components").css("-ms-filter", "blur(4px)");
+      $(".prev_at_components").css("-o-filter", "blur(4px)");
+      $(".prev_at_components").css("filter", "blur(4px)");
+      document.getElementById('form_pred_values').style.display = 'none';
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      $.ajax({
+        url: 'http://127.0.0.1:5000/prediction_next_days',
+        method: 'post',
+        data: $("#form_pred_weeks").serializeArray()
+      })
+        .done(function (response) {
+          dates_ori = []
+          pred_values = []
+          ori_values = []
+          pred_dates = []
+          response.forEach(x => {
+            dates_ori.push(x.date_ori)
+            pred_values.push(x.pred_values)
+            ori_values.push(x.values_ori)
+            pred_dates.push(x.pred_dates)
+          })
+          dates_ori = dates_ori.filter(function (el) { return el; })
+          pred_dates = pred_dates.filter(function (el) { return el; })
+          ori_values = ori_values.filter(function (el) { return el; })
+          ori_values.push(pred_values[0])
+          pred_values.push(undefined)
+          //var weeks_pred = 0
+          //$("#form_pred_weeks").serializeArray().forEach(x => weeks_pred = x.value)
+          //var xxx = pred_values.splice(0, weeks_pred)
+          var xxx = pred_values.splice(0, 3)
+          pred_values.concat(xxx)
+          xxx.forEach(x => { pred_values.push(x.toFixed(3)) })
+
+          function onlyUnique(value, index, self) {
+            return self.indexOf(value) === index;
+          }
+          pred_values.shift()
+          document.getElementById('div_roler_prev_graph').style.display = 'none'
+          $(".prev_at_components").css("-webkit-filter", "");
+          $(".prev_at_components").css("-moz-filter", "");
+          $(".prev_at_components").css("-ms-filter", "");
+          $(".prev_at_components").css("-o-filter", "");
+          $(".prev_at_components").css("filter", "");
+          document.getElementById("form_pred_weeks").reset();
+          var max = Math.max.apply(Math, ori_values)
+          var max_pred_values = Math.max.apply(null, pred_values.filter(function (x) { return isFinite(x); }));
+          if (max_pred_values > max) { max = max_pred_values }
+          var ctx = document.getElementById('myChart').getContext('2d');
+          var gradient = ctx.createLinearGradient(0, 0, 0, 800);
+          gradient.addColorStop(0, 'rgba(0, 163, 253, 1)');
+          gradient.addColorStop(0.5, 'rgba(0, 163, 253, 0.28)');
+          gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+          var gradient1 = ctx.createLinearGradient(0, 0, 0, 800);
+          gradient1.addColorStop(0, 'rgba(255, 186, 0, 0.95)');
+          gradient1.addColorStop(0.5, 'rgba(255, 186, 0, 0.35)');
+          gradient1.addColorStop(1, 'rgba(0, 0, 0, 0)');
+          graph = new Chart("myChart", {
+            type: "line",
+            data: {
+              labels: dates_ori.concat(pred_dates).filter(onlyUnique),
+              datasets: [
+                {
+                  label: 'Valores Previstos',
+                  data: pred_values,
+                  borderColor: 'orange',
+                  backgroundColor: gradient1,
+                },
+                {
+                  label: 'Valores Originais',
+                  data: ori_values,
+                  borderColor: 'blue',
+                  backgroundColor: gradient,
+                },
+              ]
+            },
+            options: {
+              elements: {
+                    point:{
+                        radius: 0,
+                    }
+                },
+              legend: {
+                labels: {
+                  fontColor: "white",
+                  fontSize: 15
+                }
+              },
+              scales: {
+                yAxes: [{
+                  ticks: {
+                    min: 0,
+                    max: Math.ceil(max) + 3,
+                    fontColor: "white",
+                    fontSize: 12,
+                    beginAtZero: true
+                  },
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Valor (mg/l)',
+                    fontColor: 'white',
+                    fontSize: 15
+                  }
+                }],
+                xAxes: [{
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Data',
+                    fontColor: 'white',
+                    fontSize: 15
+                  },
+                  ticks: {
+                    fontColor: "white",
+                    fontSize: 12,
+                    beginAtZero: true
+                  }
+                }]
+              }
+            }
+          });
+          
+          graph.data.datasets[1].pointRadius = [5, 5, 5, 5, 5, 5, 5, 5, 0];
+          graph.data.datasets[0].pointRadius = [0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5];
+          graph.update();
+          const url = 'http://127.0.0.1:5000/prediction_next_days_values'
+          fetch(url)
+            .then(response => response.json())
+            .then(json => {
+              var table = document.getElementById("table_pred");
+              var tr = "";
+              table.innerHTML = table.rows[0].innerHTML;
+              json.forEach(x => {
+                tr += '<tr>';
+                tr += '<td>' + x.pred_date + '</td>' + '<td>' + x.pred_val.toFixed(3) + ' mg/l' + '</td>'
+                tr += '</tr>'
+              })
+              table.innerHTML += tr;
+            })
+          e.preventDefault();
+          e.stopImmediatePropagation();
+          document.getElementById('table_pred').style.display = 'block';
+          document.getElementById('myChart').style.display = "block";
+          document.getElementById('myChart').scrollIntoView();
+          document.getElementById('form_pred_values').style.display = 'block';
+        })
+        .fail(function (error) {
+          console.log("ERRO")
+        });
+    })
+  }*/
+
+
+</script>
+
+</html>

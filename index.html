@@ -611,7 +611,7 @@
     $(".prev_at_components").css("-ms-filter", "blur(4px)");
     $(".prev_at_components").css("-o-filter", "blur(4px)");
     $(".prev_at_components").css("filter", "blur(4px)");
-    const url = 'https://web-production-3626.up.railway.app/rules'
+    const url = 'https://pamwater-platform-backend.onrender.com/rules'
     fetch(url)
       .then(response => response.json())
       .then(json => {
@@ -642,7 +642,7 @@
         reader.onload = function (e) {
           var table = document.createElement("table");
           var rows = e.target.result.split("\n");
-          $.post('https://web-production-3626.up.railway.app/insert_data', { rows }, function () {
+          $.post('https://pamwater-platform-backend.onrender.com/insert_data', { rows }, function () {
             document.getElementById("fileUpload").value = '';
           }).done(function (response) {
             alert("Ficheiro inserido com sucesso!");
@@ -674,7 +674,7 @@
     }
   }
 
-  const url = 'https://web-production-3626.up.railway.app/last_date'
+  const url = 'https://pamwater-platform-backend.onrender.com/last_date'
   fetch(url)
     .then(response => response.json())
     .then(json => {
@@ -690,7 +690,7 @@
       $(".prev_at_components").css("-ms-filter", "blur(4px)");
       $(".prev_at_components").css("-o-filter", "blur(4px)");
       $(".prev_at_components").css("filter", "blur(4px)");
-      const url = 'https://web-production-3626.up.railway.app/prediction_next_days'
+      const url = 'https://pamwater-platform-backend.onrender.com/prediction_next_days'
     fetch(url)
       .then(response => response.json())
       .then(json => {
@@ -809,7 +809,7 @@
           graph.data.datasets[0].pointRadius = [5, 5, 5, 5, 5, 5, 5, 5, 5];
           graph.data.datasets[1].pointRadius = [0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5];
           graph.update();
-          const url = 'https://web-production-3626.up.railway.app/prediction_next_days_values'
+          const url = 'https://pamwater-platform-backend.onrender.com/prediction_next_days_values'
           fetch(url)
             .then(response => response.json())
             .then(json => {
@@ -841,7 +841,7 @@
       $(".prev_ph_gui_components").css("-ms-filter", "blur(4px)");
       $(".prev_ph_gui_components").css("-o-filter", "blur(4px)");
       $(".prev_ph_gui_components").css("filter", "blur(4px)");
-      const url = 'https://web-production-3626.up.railway.app/prediction_next_days_ph_gui'
+      const url = 'https://pamwater-platform-backend.onrender.com/prediction_next_days_ph_gui'
     fetch(url)
       .then(response => response.json())
       .then(json => {
@@ -960,7 +960,7 @@
           graph.data.datasets[0].pointRadius = [5, 5, 5, 5, 5, 5, 5, 5, 5];
           graph.data.datasets[1].pointRadius = [0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5];
           graph.update();
-          const url = 'https://web-production-3626.up.railway.app/prediction_next_days_values_ph_gui'
+          const url = 'https://pamwater-platform-backend.onrender.com/prediction_next_days_values_ph_gui'
           fetch(url)
             .then(response => response.json())
             .then(json => {
@@ -994,7 +994,7 @@
       $(".prev_elec_tot_gui_components").css("-ms-filter", "blur(4px)");
       $(".prev_elec_tot_gui_components").css("-o-filter", "blur(4px)");
       $(".prev_elec_tot_gui_components").css("filter", "blur(4px)");
-      const url = 'https://web-production-3626.up.railway.app/prediction_next_days_elec_tot_gui'
+      const url = 'https://pamwater-platform-backend.onrender.com/prediction_next_days_elec_tot_gui'
     fetch(url)
       .then(response => response.json())
       .then(json => {
@@ -1113,7 +1113,7 @@
           graph.data.datasets[0].pointRadius = [5, 5, 5, 5, 5, 5, 5, 5, 5];
           graph.data.datasets[1].pointRadius = [0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5];
           graph.update();
-          const url = 'https://web-production-3626.up.railway.app/prediction_next_days_values_elec_tot_gui'
+          const url = 'https://pamwater-platform-backend.onrender.com/prediction_next_days_values_elec_tot_gui'
            fetch(url)
             .then(response => response.json())
             .then(json => {
